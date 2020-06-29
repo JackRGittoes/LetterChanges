@@ -7,26 +7,32 @@ class MainClass
 
     public static string LetterChanges(string str)
     {
-
-        char[] alphabet = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+        char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a' ,'b', 'c', 'd','e','f','g','h','i','j','k','l','m','n','o','p', 'q','r','s','t','u','v','w','x','y','z'};
         List<Char> word = new List<Char>();
         Regex pattern = new Regex("[;,\t\r ]|[\n]{2}");
         pattern.Replace(str, "");
 
-        var counter = 0;
-        foreach(char x in alphabet)
+        foreach (char s in str)
         {
-            counter++;
-            if (str.ToUpper().Contains(x))
+            for (int i = 0; i < alphabet.Length; i++)
             {
-                
-                try
+                if(s.ToString().Contains(' '))
                 {
-                    word.Add(alphabet[counter++]);
-                }
-                catch(Exception)
+                    word.Add(' ');
+                    break;
+                }   
+                else if (s.ToString().Contains(alphabet[i]))
                 {
-                    word.Add(alphabet[0]);  
+
+                    try
+                    {
+                        word.Add(alphabet[i+1]);
+
+                    }
+                    catch (Exception)
+                    {
+                        word.Add(alphabet[0]);
+                    }
                 }
             }
         }
